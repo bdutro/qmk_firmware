@@ -76,6 +76,7 @@ void keyboard_post_init_user(void) {
 
 #define CAPS_LOCK_LED_INDEX 61
 #define NUM_LOCK_LED_INDEX 37
+#define MIC_LED_INDEX 14
 
 bool rgb_matrix_indicators_user(void) {
     const led_t mod_state = host_keyboard_led_state();
@@ -91,6 +92,13 @@ bool rgb_matrix_indicators_user(void) {
     }
     else {
         INDICATOR_OFF(NUM_LOCK_LED_INDEX);
+    }
+
+    if(mod_state.compose) {
+        INDICATOR_ON(MIC_LED_INDEX);
+    }
+    else {
+        INDICATOR_OFF(MIC_LED_INDEX);
     }
 
     return true;
